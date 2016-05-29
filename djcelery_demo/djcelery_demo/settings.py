@@ -17,6 +17,19 @@ CELERY_RESULT_BACKEND = 'db+mysql://root:root@192.168.33.1/celery'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+
+## 计划任务配置 
+# http://docs.jinkan.org/docs/celery/userguide/periodic-tasks.html
+from datetime import timedelta
+CELERYBEAT_SCHEDULE = {
+    'add-every-30-seconds': {
+        'task': 'taskapp.tasks.add',
+        'schedule': timedelta(seconds=10), # crontab(hour=7, minute=30, day_of_week=1),
+        'args': (16, 16)
+    },
+}
+CELERY_TIMEZONE = 'UTC'
+## 
 ## -----------------------------------------------## 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
