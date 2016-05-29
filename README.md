@@ -16,7 +16,7 @@ celery 个人使用demo
 
 #### 功能： 
     - 异步任务使用实例。
-    - [计划任务](http://docs.jinkan.org/docs/celery/userguide/periodic-tasks.html)
+    - 计划任务: http://docs.jinkan.org/docs/celery/userguide/periodic-tasks.html
     
 #### 运行：
     
