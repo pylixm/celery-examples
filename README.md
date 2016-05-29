@@ -21,9 +21,9 @@ celery 个人使用demo
 
 #### 运行：
     
-    # 启动 worker 
+    # 启动 worker  -- 运行相当于消费者 
     celery -A djcelery_demo worker -l info 
-    # 启动处理计划任务的 worker -- 运行相当于消费者 
+    # 启动处理计划任务的 worker -B 相当于自产自销
     celery -A djcelery_demo worker -B -l info
     # 计划任务使用  --- 运行相当于生产者
     celery beat 
