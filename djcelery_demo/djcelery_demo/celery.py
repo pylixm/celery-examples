@@ -10,7 +10,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djcelery_demo.settings')
 
 from django.conf import settings  # noqa
 
-app = Celery('djcelery_demo')
+app = Celery('celery')
 
 # Using a string here means the worker will not have to
 # pickle the object when using Windows.
@@ -20,19 +20,6 @@ app.config_from_object('django.conf:settings')
 # 用来发现放到django app中的task 
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
 
-# For the database backend you must use:
-app.conf.update(
-    CELERY_RESULT_BACKEND='djcelery.backends.database:DatabaseBackend',
-)
-# For the cache backend you can use:
-# app.conf.update(
-#     CELERY_RESULT_BACKEND='djcelery.backends.cache:CacheBackend',
-# )
-
-app.conf.update(
-    ##BROKER_URL = 'django://'
-    BROKER_URL = 'redis://localhost:6379/0'
-)
 
 # 允许root 用户运行celery
 platforms.C_FORCE_ROOT = True

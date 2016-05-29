@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*- 
 """
 Django settings for djcelery_demo project.
 
@@ -7,10 +8,16 @@ https://docs.djangoproject.com/en/1.7/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.7/ref/settings/
 """
-
+## celeyr 配置 ----------------------------------- ##  
+# broker 配置
+BROKER_URL = 'redis://localhost:6379/0'
+# 结果保存配置 
+CELERY_RESULT_BACKEND = 'db+mysql://root:root@192.168.33.1/celery'
+# 序列化相关配置
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
+## -----------------------------------------------## 
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
@@ -40,8 +47,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'djcelery',
-    'kombu.transport.django',
     'taskapp',
 )
 
