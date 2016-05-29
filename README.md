@@ -29,9 +29,12 @@ celery 个人使用demo
     celery beat 
     # 使用 django 数据库来管理计划任务的配置 
     celery -A proj beat -S djcelery.schedulers.DatabaseScheduler
+    
     # 停止worker
     ps auxww | grep 'celery worker' | awk '{print $2}' | xargs kill -9 
+    
     # 重启
     kill -HUP $pid
+    
     生产环境建议 使用supervisor 等软件管理
     参考：http://docs.jinkan.org/docs/celery/tutorials/daemonizing.html#daemonizing
