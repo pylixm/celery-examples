@@ -16,9 +16,9 @@ app = Celery('djcelery_demo')
 # pickle the object when using Windows.
 # 用来发现放到 django settings 中的 celery 配置
 app.config_from_object('django.conf:settings')
+
 # 用来发现放到django app中的task 
 app.autodiscover_tasks(lambda: settings.INSTALLED_APPS)
-
 
 # For the database backend you must use:
 app.conf.update(
@@ -30,7 +30,8 @@ app.conf.update(
 # )
 
 app.conf.update(
-    BROKER_URL = 'django://'
+    ##BROKER_URL = 'django://'
+    BROKER_URL = 'redis://localhost:6379/0'
 )
 
 # 允许root 用户运行celery
